@@ -12,9 +12,19 @@ chrome.storage.local.get('camAccess', items => {
   }
 });
 
+// If mic access has already been granted to this extension, set the micAccess flag.
+chrome.storage.local.get('micAccess', items => {
+  if (!!items['micAccess']) {
+    console.log('mic access already exists');
+  }
+});
+
 // If cam access gets granted to this extension, set the camAccess flag.
 chrome.storage.onChanged.addListener((changes, namespace) => {
   if ('camAccess' in changes) {
     console.log('cam access granted');
+  }
+  if ('micAccess' in changes) {
+    console.log('mic access granted');
   }
 });

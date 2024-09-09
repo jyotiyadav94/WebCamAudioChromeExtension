@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Webcam Access",
-  "description": "A simple extension that requests webcam access",
+  "name": "Webcam and Microphone Access",
+  "description": "A simple extension that requests webcam and microphone access",
   "version": "0.1",
   "browser_action": {
     "default_icon": "icon.png",
@@ -11,7 +11,8 @@
     "activeTab",
     "storage",
     "unlimitedStorage",
-    "camera"
+    "camera",
+    "microphone"
   ],
   "background": {
     "scripts": ["background.js"]
