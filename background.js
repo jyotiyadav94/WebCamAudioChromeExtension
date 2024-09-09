@@ -1,9 +1,10 @@
-chrome.runtime.onInstalled.addListener(() => {
-    console.log("Extension installed and background script running.");
+chrome.action.onClicked.addListener(function (tab) {
+  // Request permissions when the browser action is clicked
+  chrome.permissions.request({ permissions: ["activeTab", "media"] }, function (granted) {
+    if (granted) {
+      console.log("Permissions granted!");
+    } else {
+      console.log("Permissions denied!");
+    }
   });
-  
-  // You can add permission handling or other logic here as needed
-  chrome.permissions.onAdded.addListener((permissions) => {
-    console.log("New permissions granted:", permissions);
-  });
-  
+});
