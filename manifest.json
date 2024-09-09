@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Webcam and Microphone Access",
+    "version": "1.0",
+    "description": "Access your webcam and microphone from a popup window.",
+    "permissions": [
+    ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_title": "Webcam and Microphone"
+    },
+    "background": {
+      "service_worker": "background.js"
+    }
+  }
+  
