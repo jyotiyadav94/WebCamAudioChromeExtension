@@ -1,10 +1,20 @@
-chrome.action.onClicked.addListener(function (tab) {
-  // Request permissions when the browser action is clicked
-  chrome.permissions.request({ permissions: ["activeTab", "media"] }, function (granted) {
-    if (granted) {
-      console.log("Permissions granted!");
-    } else {
-      console.log("Permissions denied!");
-    }
-  });
+// Create a new tab with the welcome page when the extension is installed
+chrome.runtime.onInstalled.addListener(function(details) {
+  if (details.reason == "install") {
+    chrome.tabs.create({ url: chrome.runtime.getURL('welcome.html') });
+  }
+});
+
+// If cam access has already been granted to this extension, set the camAccess flag.
+chrome.storage.local.get('camAccess', items => {
+  if (!!items['camAccess']) {
+    console.log('cam access already exists');
+  }
+});
+
+// If cam access gets granted to this extension, set the camAccess flag.
+chrome.storage.onChanged.addListener((changes, namespace) => {
+  if ('camAccess' in changes) {
+    console.log('cam access granted');
+  }
 });
